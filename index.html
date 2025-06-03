@@ -17,7 +17,7 @@
             </div>
             <div class="title-section">
                 <h1>Business Absenteeism Cost Calculator</h1>
-                <p class="subtitle">This calculator helps you understand the financial impact of employee absenteeism on your business. Based on industry-specific data from Australia, you can see how much absenteeism is costing you daily, monthly, quarterly, yearly, or over a decade.</p>
+                <p class="subtitle">This calculator helps you understand the financial impact of employee absenteeism on your business. You can enter your company’s average annual salary and absenteeism rate to see how much absenteeism is costing you daily, monthly, quarterly, yearly, or over a decade.</p>
             </div>
         </header>
 
@@ -25,27 +25,9 @@
             <!-- Input Form -->
             <div class="input-section">
                 <h2>Company Details</h2>
-                
-                <div class="form-group">
-                    <label for="industry">Select your industry:</label>
-                    <select id="industry" class="form-control">
-                        <option value="Mining">Mining</option>
-                        <option value="Hospitality">Hospitality</option>
-                        <option value="Tourism">Tourism</option>
-                        <option value="Retail">Retail</option>
-                        <option value="Corporate">Corporate</option>
-                        <option value="Technical">Technical</option>
-                        <option value="Transport">Transport</option>
-                        <option value="Logistics">Logistics</option>
-                        <option value="Energy">Energy</option>
-                        <option value="University and Teaching">University and Teaching</option>
-                        <option value="Manufacturing">Manufacturing</option>
-                        <option value="Construction">Construction</option>
-                    </select>
-                </div>
 
                 <div class="form-group">
-                    <label for="salary">Annual salary per employee:</label>
+                    <label for="salary">Average annual salary:</label>
                     <input type="number" id="salary" class="form-control" min="30000" max="500000" step="1000" value="180000">
                 </div>
 
@@ -81,15 +63,15 @@
                         <h3>Calculation Methodology</h3>
                         <p>The financial impact is calculated using the formula:</p>
                         <p><strong>Financial Loss = Number of Employees × Average Salary × Absenteeism Rate × Time Factor</strong></p>
-                        
+
                         <h4>Where:</h4>
                         <ul>
                             <li><strong>Number of Employees:</strong> Total workforce size</li>
-                            <li><strong>Average Salary:</strong> Industry-specific average annual salary</li>
+                            <li><strong>Average Salary:</strong> Your provided average annual salary</li>
                             <li><strong>Absenteeism Rate:</strong> Percentage of work time lost to absences</li>
                             <li><strong>Time Factor:</strong> Portion of the year based on selected time period</li>
                         </ul>
-                        
+
                         <p>This calculation represents direct salary costs paid during absence and does not include indirect costs such as:</p>
                         <ul>
                             <li>Replacement worker costs</li>
@@ -98,7 +80,7 @@
                             <li>Impact on team morale</li>
                             <li>Customer service disruptions</li>
                         </ul>
-                        
+
                         <p>The actual total cost may be significantly higher than calculated here.</p>
                     </div>
                 </details>
@@ -108,19 +90,19 @@
         <!-- Results Section -->
         <div class="results-section">
             <h2>Financial Impact Results</h2>
-            
+
             <div class="metrics-grid">
                 <div class="metric-card main-metric">
                     <h3>Estimated Financial Loss</h3>
                     <div class="metric-value" id="main-loss">$0</div>
                     <div class="metric-period" id="main-period">Year</div>
                 </div>
-                
+
                 <div class="metric-card">
                     <h3>Total Working Days Lost</h3>
                     <div class="metric-value" id="days-lost">0 days</div>
                 </div>
-                
+
                 <div class="metric-card">
                     <h3>Daily Financial Loss</h3>
                     <div class="metric-value" id="daily-loss">$0</div>
@@ -128,18 +110,11 @@
             </div>
         </div>
 
-        <!-- Chart Section
-        <div class="chart-section">
-            <h2>Financial Impact Over Time</h2>
-            <canvas id="impactChart"></canvas>
-        </div> 
-        -->
-
         <!-- Conclusion Section -->
         <div class="conclusion-section">
             <h2>What Does This Mean For Your Business?</h2>
             <div id="conclusion-text"></div>
-            
+
             <h3>How to Reduce Absenteeism Costs:</h3>
             <ul>
                 <li>Implement wellness programs</li>
@@ -149,13 +124,13 @@
                 <li>Develop clear attendance policies</li>
                 <li>Provide manager training for addressing absenteeism</li>
             </ul>
-            
+
             <p>Understanding the financial impact is the first step toward implementing effective solutions.</p>
         </div>
 
         <!-- Footer -->
         <footer>
-            <p><small>Data source: Australian workforce statistics. Calculations are estimates based on average industry salaries and typical absenteeism rates.</small></p>
+            <p><small>Data source: Australian workforce statistics. Calculations are estimates based on average salaries and typical absenteeism rates.</small></p>
         </footer>
     </div>
 
