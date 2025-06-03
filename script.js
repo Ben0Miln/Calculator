@@ -14,7 +14,6 @@ const industryData = {
     "Construction": 75000
 };
 
-// Time factors for calculations
 const timeFactors = {
     "Day": 1 / 260,
     "Month": 1 / 12,
@@ -23,9 +22,6 @@ const timeFactors = {
     "10 Years": 10
 };
 
-let impactChart = null;
-
-// Debounce helper to prevent excessive updates
 function debounce(fn, delay) {
     let timeout;
     return (...args) => {
@@ -80,7 +76,6 @@ function calculateAndUpdate() {
     document.getElementById('daily-loss').textContent = formatCurrency(dailyLoss);
 
     updateConclusionText(industry, salary, employees, absenteeismRate, period, financialLoss, totalDaysLost);
-    updateChart(employees, salary, absenteeismRate);
 }
 
 function formatCurrency(amount) {
@@ -107,87 +102,4 @@ function updateConclusionText(industry, salary, employees, absenteeismRate, peri
             <li>On average, each employee costs your company <strong>${formatCurrency(annualCostPerEmployee)}</strong> per year in absenteeism</li>
         </ul>
     `;
-}
-
-function updateChart(employees, salary, absenteeismRate) {
-    const values = ['Day', 'Month', 'Quarter', 'Year', '10 Years'].map(period => {
-        return employees * salary * (absenteeismRate / 100) * timeFactors[period];
-    });
-
-    if (impactChart) {
-        impactChart.data.datasets[0].data = values;
-        impactChart.update();
-        return;
-    }
-
-    const ctx = document.getElementById('impactChart').getContext('2d');
-    impactChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['Day', 'Month', 'Quarter', 'Year', '10 Years'],
-            datasets: [{
-                label: 'Financial Loss ($)',
-                data: values,
-                backgroundColor: ['#E3F2FD', '#BBDEFB', '#90CAF9', '#0066CC', '#003D7A'],
-                borderColor: '#0066CC',
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                title: {
-                    display: true,
-                    text: 'Financial Impact of Absenteeism Over Different Time Periods',
-                    font: {
-                        family: 'Open Sans',
-                        size: 16,
-                        weight: 'bold'
-                    },
-                    color: '#0066CC'
-                },
-                legend: {
-                    display: false
-                }
-            },
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    ticks: {
-                        callback: value => '$' + value.toLocaleString('en-AU'),
-                        font: { family: 'Open Sans' }
-                    },
-                    title: {
-                        display: true,
-                        text: 'Financial Loss ($)',
-                        font: {
-                            family: 'Open Sans',
-                            weight: 'bold'
-                        },
-                        color: '#0066CC'
-                    }
-                },
-                x: {
-                    ticks: {
-                        font: { family: 'Open Sans' }
-                    },
-                    title: {
-                        display: true,
-                        text: 'Time Period',
-                        font: {
-                            family: 'Open Sans',
-                            weight: 'bold'
-                        },
-                        color: '#0066CC'
-                    }
-                }
-            },
-            elements: {
-                bar: {
-                    borderRadius: 4
-                }
-            }
-        }
-    });
 }
