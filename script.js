@@ -50,6 +50,17 @@ function calculateAndUpdate() {
     document.getElementById('days-lost').textContent = formatNumber(totalDaysLost, 1) + ' days';
     document.getElementById('daily-loss').textContent = formatCurrency(dailyLoss);
 
+    // Wellness Benefit Calculations
+    const reducedRate = absenteeismRate * 0.75;
+    const reducedLoss = employees * salary * (reducedRate / 100) * timeFactor;
+    const absenteeismSavings = financialLoss - reducedLoss;
+
+    const productivityGain = reducedLoss * 0.12;
+
+    document.getElementById('savings-absenteeism').textContent = formatCurrency(absenteeismSavings);
+    document.getElementById('productivity-gain').textContent = formatCurrency(productivityGain);
+    document.getElementById('roi-gain').textContent = '$40,000';
+
     updateConclusionText(salary, employees, absenteeismRate, period, financialLoss, totalDaysLost);
 }
 
