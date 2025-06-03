@@ -50,11 +50,9 @@ function calculateAndUpdate() {
     document.getElementById('days-lost').textContent = formatNumber(totalDaysLost, 1) + ' days';
     document.getElementById('daily-loss').textContent = formatCurrency(dailyLoss);
 
-    // Wellness Benefit Calculations
     const reducedRate = absenteeismRate * 0.75;
     const reducedLoss = employees * salary * (reducedRate / 100) * timeFactor;
     const absenteeismSavings = financialLoss - reducedLoss;
-
     const productivityGain = reducedLoss * 0.12;
 
     document.getElementById('savings-absenteeism').textContent = formatCurrency(absenteeismSavings);
@@ -62,6 +60,7 @@ function calculateAndUpdate() {
     document.getElementById('roi-gain').textContent = '$40,000';
 
     updateConclusionText(salary, employees, absenteeismRate, period, financialLoss, totalDaysLost);
+    updateRoiSection(absenteeismSavings);
 }
 
 function formatCurrency(amount) {
@@ -88,4 +87,24 @@ function updateConclusionText(salary, employees, absenteeismRate, period, financ
             <li>On average, each employee costs your company <strong>${formatCurrency(annualCostPerEmployee)}</strong> per year in absenteeism</li>
         </ul>
     `;
+}
+
+function animateValue(element, start, end, duration) {
+    let startTimestamp = null;
+    const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        const value = start + (end - start) * progress;
+        element.textContent = formatCurrency(value);
+        if (progress < 1) {
+            window.requestAnimationFrame(step);
+        }
+    };
+    window.requestAnimationFrame(step);
+}
+
+function updateRoiSection(absenteeismSavings) {
+    const potentialROI = absenteeismSavings * 4;
+    animateValue(document.getElementById('reinvestment-savings'), 0, absenteeismSavings, 800);
+    animateValue(document.getElementById('roi-potential'), 0, potentialROI, 800);
 }
