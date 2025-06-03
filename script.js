@@ -16,80 +16,73 @@ const industryData = {
 
 // Time factors for calculations
 const timeFactors = {
-    "Day": 1/260,
-    "Month": 1/12,
-    "Quarter": 1/4,
+    "Day": 1 / 260,
+    "Month": 1 / 12,
+    "Quarter": 1 / 4,
     "Year": 1,
     "10 Years": 10
 };
 
-// Chart instance
 let impactChart = null;
 
-// Initialize the calculator
-document.addEventListener('DOMContentLoaded', function() {
-    // Set up event listeners
+// Debounce helper to prevent excessive updates
+function debounce(fn, delay) {
+    let timeout;
+    return (...args) => {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => fn(...args), delay);
+    };
+}
+
+document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('industry').addEventListener('change', updateSalary);
-    document.getElementById('salary').addEventListener('input', calculateAndUpdate);
-    document.getElementById('employees').addEventListener('input', calculateAndUpdate);
-    document.getElementById('absenteeism').addEventListener('input', updateAbsenteeismDisplay);
-    document.getElementById('period').addEventListener('input', calculateAndUpdate);
-    
-    // Initialize values
+    document.getElementById('salary').addEventListener('input', debounce(calculateAndUpdate, 300));
+    document.getElementById('employees').addEventListener('input', debounce(calculateAndUpdate, 300));
+    document.getElementById('absenteeism').addEventListener('input', debounce(updateAbsenteeismDisplay, 300));
+    document.getElementById('period').addEventListener('input', debounce(calculateAndUpdate, 300));
+
     updateSalary();
     updateAbsenteeismDisplay();
     calculateAndUpdate();
 });
 
-// Update salary when industry changes
 function updateSalary() {
     const industry = document.getElementById('industry').value;
-    const salaryInput = document.getElementById('salary');
-    salaryInput.value = industryData[industry];
+    document.getElementById('salary').value = industryData[industry];
     calculateAndUpdate();
 }
 
-// Update absenteeism rate display
 function updateAbsenteeismDisplay() {
     const absenteeism = document.getElementById('absenteeism').value;
     document.getElementById('absenteeism-value').textContent = absenteeism + '%';
     calculateAndUpdate();
 }
 
-// Main calculation and update function
 function calculateAndUpdate() {
     const industry = document.getElementById('industry').value;
     const salary = parseInt(document.getElementById('salary').value);
     const employees = parseInt(document.getElementById('employees').value);
     const absenteeismRate = parseFloat(document.getElementById('absenteeism').value);
     const period = document.getElementById('period').value;
-    
-    // Calculate financial impact
+
     const timeFactor = timeFactors[period];
     const financialLoss = employees * salary * (absenteeismRate / 100) * timeFactor;
-    
-    // Calculate working days lost
+
     const annualWorkingDays = 260;
     const daysLostPerEmployee = annualWorkingDays * (absenteeismRate / 100);
     const totalDaysLost = daysLostPerEmployee * employees * timeFactor;
-    
-    // Calculate daily loss
-    const dailyLoss = employees * salary * (absenteeismRate / 100) * (1/260);
-    
-    // Update main metrics
+
+    const dailyLoss = employees * salary * (absenteeismRate / 100) * (1 / 260);
+
     document.getElementById('main-loss').textContent = formatCurrency(financialLoss);
     document.getElementById('main-period').textContent = period;
     document.getElementById('days-lost').textContent = formatNumber(totalDaysLost, 1) + ' days';
     document.getElementById('daily-loss').textContent = formatCurrency(dailyLoss);
-    
-    // Update conclusion text
+
     updateConclusionText(industry, salary, employees, absenteeismRate, period, financialLoss, totalDaysLost);
-    
-    // Update chart
     updateChart(employees, salary, absenteeismRate);
 }
 
-// Format currency
 function formatCurrency(amount) {
     return '$' + amount.toLocaleString('en-AU', {
         minimumFractionDigits: 2,
@@ -97,7 +90,6 @@ function formatCurrency(amount) {
     });
 }
 
-// Format number with decimal places
 function formatNumber(number, decimals = 0) {
     return number.toLocaleString('en-AU', {
         minimumFractionDigits: decimals,
@@ -105,52 +97,38 @@ function formatNumber(number, decimals = 0) {
     });
 }
 
-// Update conclusion text
 function updateConclusionText(industry, salary, employees, absenteeismRate, period, financialLoss, totalDaysLost) {
     const annualCostPerEmployee = salary * (absenteeismRate / 100);
-    
-    const conclusionHTML = `
+    document.getElementById('conclusion-text').innerHTML = `
         <p>Based on an average salary of <strong>${formatCurrency(salary)}</strong> for the <strong>${industry}</strong> industry and an absenteeism rate of <strong>${absenteeismRate}%</strong>:</p>
-        
         <ul>
             <li>Your company with <strong>${employees}</strong> employees is losing approximately <strong>${formatCurrency(financialLoss)}</strong> over <strong>${period.toLowerCase()}</strong></li>
             <li>This equates to <strong>${formatNumber(totalDaysLost, 1)}</strong> working days lost during this period</li>
             <li>On average, each employee costs your company <strong>${formatCurrency(annualCostPerEmployee)}</strong> per year in absenteeism</li>
         </ul>
     `;
-    
-    document.getElementById('conclusion-text').innerHTML = conclusionHTML;
 }
 
-// Update chart
 function updateChart(employees, salary, absenteeismRate) {
-    const ctx = document.getElementById('impactChart').getContext('2d');
-    
-    const periods = ['Day', 'Month', 'Quarter', 'Year', '10 Years'];
-    const values = periods.map(period => {
+    const values = ['Day', 'Month', 'Quarter', 'Year', '10 Years'].map(period => {
         return employees * salary * (absenteeismRate / 100) * timeFactors[period];
     });
-    
-    // Destroy existing chart if it exists
+
     if (impactChart) {
-        impactChart.destroy();
+        impactChart.data.datasets[0].data = values;
+        impactChart.update();
+        return;
     }
-    
-    // Create new chart
+
+    const ctx = document.getElementById('impactChart').getContext('2d');
     impactChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: periods,
+            labels: ['Day', 'Month', 'Quarter', 'Year', '10 Years'],
             datasets: [{
                 label: 'Financial Loss ($)',
                 data: values,
-                backgroundColor: [
-                    '#E3F2FD',
-                    '#BBDEFB',
-                    '#90CAF9',
-                    '#0066CC',
-                    '#003D7A'
-                ],
+                backgroundColor: ['#E3F2FD', '#BBDEFB', '#90CAF9', '#0066CC', '#003D7A'],
                 borderColor: '#0066CC',
                 borderWidth: 1
             }]
@@ -177,12 +155,8 @@ function updateChart(employees, salary, absenteeismRate) {
                 y: {
                     beginAtZero: true,
                     ticks: {
-                        callback: function(value) {
-                            return '$' + value.toLocaleString('en-AU');
-                        },
-                        font: {
-                            family: 'Open Sans'
-                        }
+                        callback: value => '$' + value.toLocaleString('en-AU'),
+                        font: { family: 'Open Sans' }
                     },
                     title: {
                         display: true,
@@ -196,9 +170,7 @@ function updateChart(employees, salary, absenteeismRate) {
                 },
                 x: {
                     ticks: {
-                        font: {
-                            family: 'Open Sans'
-                        }
+                        font: { family: 'Open Sans' }
                     },
                     title: {
                         display: true,
