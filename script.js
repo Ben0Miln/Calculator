@@ -1,3 +1,4 @@
+
 const timeFactors = {
     "Day": 1 / 260,
     "Month": 1 / 12,
@@ -19,6 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('employees').addEventListener('input', debounce(calculateAndUpdate, 300));
     document.getElementById('absenteeism').addEventListener('input', debounce(updateAbsenteeismDisplay, 300));
     document.getElementById('period').addEventListener('input', debounce(calculateAndUpdate, 300));
+    document.getElementById('custom-investment').addEventListener('input', debounce(updateCustomROI, 300));
 
     updateAbsenteeismDisplay();
     calculateAndUpdate();
@@ -38,11 +40,9 @@ function calculateAndUpdate() {
 
     const timeFactor = timeFactors[period];
     const financialLoss = employees * salary * (absenteeismRate / 100) * timeFactor;
-
     const annualWorkingDays = 260;
     const daysLostPerEmployee = annualWorkingDays * (absenteeismRate / 100);
     const totalDaysLost = daysLostPerEmployee * employees * timeFactor;
-
     const dailyLoss = employees * salary * (absenteeismRate / 100) * (1 / 260);
 
     document.getElementById('main-loss').textContent = formatCurrency(financialLoss);
@@ -57,10 +57,16 @@ function calculateAndUpdate() {
 
     document.getElementById('savings-absenteeism').textContent = formatCurrency(absenteeismSavings);
     document.getElementById('productivity-gain').textContent = formatCurrency(productivityGain);
-    document.getElementById('roi-gain').textContent = '$40,000';
+    document.getElementById('roi-gain').textContent = formatCurrency(10000 * 2.3);
 
     updateConclusionText(salary, employees, absenteeismRate, period, financialLoss, totalDaysLost);
-    updateRoiSection(absenteeismSavings);
+    updateCustomROI();
+}
+
+function updateCustomROI() {
+    const investment = parseFloat(document.getElementById('custom-investment').value);
+    const roiValue = investment * 2.3;
+    document.getElementById('roi-potential-custom').textContent = formatCurrency(roiValue);
 }
 
 function formatCurrency(amount) {
@@ -87,24 +93,4 @@ function updateConclusionText(salary, employees, absenteeismRate, period, financ
             <li>On average, each employee costs your company <strong>${formatCurrency(annualCostPerEmployee)}</strong> per year in absenteeism</li>
         </ul>
     `;
-}
-
-function animateValue(element, start, end, duration) {
-    let startTimestamp = null;
-    const step = (timestamp) => {
-        if (!startTimestamp) startTimestamp = timestamp;
-        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-        const value = start + (end - start) * progress;
-        element.textContent = formatCurrency(value);
-        if (progress < 1) {
-            window.requestAnimationFrame(step);
-        }
-    };
-    window.requestAnimationFrame(step);
-}
-
-function updateRoiSection(absenteeismSavings) {
-    const potentialROI = absenteeismSavings * 4;
-    animateValue(document.getElementById('reinvestment-savings'), 0, absenteeismSavings, 800);
-    animateValue(document.getElementById('roi-potential'), 0, potentialROI, 800);
 }

@@ -10,19 +10,17 @@
 </head>
 <body>
   <div class="container">
-    <!-- Header -->
     <header class="header">
       <div class="logo-section">
         <img src="logo.png" alt="Health for Work Logo" class="logo"/>
       </div>
       <div class="title-section">
         <h1>Business Absenteeism Cost Calculator</h1>
-        <p class="subtitle">This calculator helps you understand the financial impact of employee absenteeism on your business. Enter your company’s average salary and absenteeism rate to see financial losses and potential savings from wellness initiatives.</p>
+        <p class="subtitle">Understand the financial impact of absenteeism and the benefits of wellness investments in your business.</p>
       </div>
     </header>
 
     <div class="main-content">
-      <!-- Input Form -->
       <div class="input-section">
         <h2>Company Details</h2>
         <div class="form-group">
@@ -51,19 +49,25 @@
         </div>
       </div>
 
-      <!-- Benefits Section -->
       <div class="benefits-section">
         <h2 class="positive-impact">Benefits of Wellness Programs</h2>
         <ul>
-          <li class="positive-impact">✅ Reduced Absenteeism: Up to 25% fewer sick days</li>
-          <li class="positive-impact">✅ Enhanced Productivity: Up to 12% more productive</li>
-          <li class="positive-impact">✅ Improved Retention: 68% more likely to stay with wellness benefits</li>
-          <li class="positive-impact">✅ Positive ROI: $4 return for every $1 invested in mental health</li>
+          <li class="positive-impact">✅ Reduced Absenteeism: Up to 25% fewer sick days
+            <a href="https://www.safeworkaustralia.gov.au/resources-and-publications/reports/psychosocial-safety-climate-and-better-productivity-australian-workplaces-costs-productivity-presenteeism-absenteeism?utm_source=chatgpt.com" target="_blank" class="tooltip-icon">[source]</a>
+          </li>
+          <li class="positive-impact">✅ Enhanced Productivity: Up to 12% more productive
+            <a href="https://www.journals.uchicago.edu/doi/10.1086/681096" target="_blank" class="tooltip-icon">[source]</a>
+          </li>
+          <li class="positive-impact">✅ Improved Retention: 68% more likely to stay with wellness benefits
+            <a href="https://www2.deloitte.com/us/en/insights/topics/talent/workplace-well-being-research-2024.html" target="_blank" class="tooltip-icon">[source]</a>
+          </li>
+          <li class="positive-impact">✅ Positive ROI: $2.3 return for every $1 invested in mental health
+            <a href="https://www.pwc.com.au/publications/pdf/beyondblue-workplace-roi-may14.pdf?utm_source=chatgpt.com" target="_blank" class="tooltip-icon">[source]</a>
+          </li>
         </ul>
       </div>
     </div>
 
-    <!-- Results Section -->
     <div class="results-section">
       <h2>Financial Impact Results</h2>
       <div class="metrics-grid">
@@ -93,27 +97,25 @@
         </div>
         <div class="metric-card positive-impact">
           <h3>ROI From $10k Investment</h3>
-          <div class="metric-value" id="roi-gain">$40,000</div>
+          <div class="metric-value" id="roi-gain">$23,000</div>
         </div>
       </div>
     </div>
 
-    <!-- ROI Reinvestment Section -->
     <div class="results-section">
       <h2>Wellness Program ROI Potential</h2>
+      <div class="form-group">
+        <label for="custom-investment">Enter Reinvestment Amount ($):</label>
+        <input type="number" id="custom-investment" class="form-control" min="0" step="1000" value="10000" />
+      </div>
       <div class="metrics-grid">
         <div class="metric-card positive-impact">
-          <h3>Reinvesting Your Savings <span class="tooltip-icon" title="This represents the money saved from reduced absenteeism that could be reinvested.">ℹ️</span></h3>
-          <div class="metric-value" id="reinvestment-savings">$0</div>
-        </div>
-        <div class="metric-card positive-impact">
-          <h3>Projected Return (4:1) <span class="tooltip-icon" title="Estimated return if savings are reinvested into a wellness program with a 4:1 ROI.">ℹ️</span></h3>
-          <div class="metric-value" id="roi-potential">$0</div>
+          <h3>Projected Return (2.3:1)</h3>
+          <div class="metric-value" id="roi-potential-custom">$0</div>
         </div>
       </div>
     </div>
 
-    <!-- Conclusion Section -->
     <div class="conclusion-section">
       <h2>What Does This Mean For Your Business?</h2>
       <div id="conclusion-text"></div>
@@ -130,7 +132,7 @@
     </div>
 
     <footer>
-      <p><small>Data source: Australian workforce statistics. Calculations are estimates based on average salaries and typical absenteeism rates.</small></p>
+      <p><small>Data sources linked above. Calculations are estimates based on average salaries and typical absenteeism rates.</small></p>
     </footer>
   </div>
   <script src="script.js"></script>
