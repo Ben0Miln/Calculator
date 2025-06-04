@@ -101,6 +101,7 @@ input.form-control, select.form-control {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
+    margin-top: 20px;
 }
 
 .metric-card {
