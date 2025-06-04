@@ -4,65 +4,25 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Business Absenteeism Cost Calculator</title>
-<div class="benefit-item positive-impact"><link rel="stylesheet" href="styles.css"/></div>
-<div class="benefit-item positive-impact"><link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet"/></div>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-</head>
-<body>
-  <div class="container">
-    <header class="header">
-      <div class="logo-section">
-        <img src="logo.png" alt="Health for Work Logo" class="logo"/>
-      </div>
-      <div class="title-section">
-        <h1>Business Absenteeism Cost Calculator</h1>
-        <p class="subtitle">Understand the financial impact of absenteeism and the benefits of wellness investments in your business.</p>
-      </div>
-    </header>
-
-    <div class="main-content unified-layout">
-      <div class="input-section">
-        <h2>Company Details</h2>
-        <div class="form-group">
-          <label for="salary">Average annual salary:</label>
-          <input type="number" id="salary" class="form-control" min="30000" max="500000" step="1000" value="180000"/>
-        </div>
-        <div class="form-group">
-          <label for="employees">Number of employees:</label>
-          <input type="number" id="employees" class="form-control" min="1" max="100000" value="100"/>
-        </div>
-        <div class="form-group">
-          <label for="absenteeism">Absenteeism rate (%):</label>
-          <p class="info-text">Australian average: 4.2% per year (approx. 9 days/employee)</p>
-          <input type="range" id="absenteeism" class="slider" min="0" max="10" step="0.1" value="4.2"/>
-          <span id="absenteeism-value">4.2%</span>
-        </div>
-        <div class="form-group">
-          <label for="period">Projection period:</label>
-          <select id="period" class="form-control">
-            <option value="Day">Day</option>
-            <option value="Month">Month</option>
-            <option value="Quarter">Quarter</option>
-            <option value="Year" selected>Year</option>
-            <option value="10 Years">10 Years</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="benefits-section">
-        <h2 class="positive-impact">Benefits of Wellness Programs</h2>
-        <ul>
-<div class="benefit-item positive-impact">Reduced Absenteeism: Up to 25% fewer sick days</div>
-            <a href="https://www.safeworkaustralia.gov.au/resources-and-publications/reports/psychosocial-safety-climate-and-better-productivity-australian-workplaces-costs-productivity-presenteeism-absenteeism?utm_source=chatgpt.com" target="_blank" class="tooltip-icon">[source]</a>
+<div class="benefit-block positive-impact">
+  <p>Reduced Absenteeism: Up to 25% fewer sick days</p>
+  <p><a href="https://www.safeworkaustralia.gov.au/resources-and-publications/reports/psychosocial-safety-climate-and-better-productivity-australian-workplaces-costs-productivity-presenteeism-absenteeism?utm_source=chatgpt.com" target="_blank" class="tooltip-icon">[source]</a></p>
+</div>
           </li>
-<div class="benefit-item positive-impact">Enhanced Productivity: Up to 12% more productive</div>
-            <a href="https://www.journals.uchicago.edu/doi/10.1086/681096" target="_blank" class="tooltip-icon">[source]</a>
+<div class="benefit-block positive-impact">
+  <p>Enhanced Productivity: Up to 12% more productive</p>
+  <p><a href="https://www.journals.uchicago.edu/doi/10.1086/681096" target="_blank" class="tooltip-icon">[source]</a></p>
+</div>
           </li>
-<div class="benefit-item positive-impact">Improved Retention: 68% more likely to stay with wellness benefits</div>
-            <a href="https://www2.deloitte.com/us/en/insights/topics/talent/workplace-well-being-research-2024.html" target="_blank" class="tooltip-icon">[source]</a>
+<div class="benefit-block positive-impact">
+  <p>Improved Retention: 68% more likely to stay with wellness benefits</p>
+  <p><a href="https://www2.deloitte.com/us/en/insights/topics/talent/workplace-well-being-research-2024.html" target="_blank" class="tooltip-icon">[source]</a></p>
+</div>
           </li>
-<div class="benefit-item positive-impact">Positive ROI: $2.3 return for every $1 invested in mental health</div>
-            <a href="https://www.pwc.com.au/publications/pdf/beyondblue-workplace-roi-may14.pdf?utm_source=chatgpt.com" target="_blank" class="tooltip-icon">[source]</a>
+<div class="benefit-block positive-impact">
+  <p>Positive ROI: $2.3 return for every $1 invested in mental health</p>
+  <p><a href="https://www.pwc.com.au/publications/pdf/beyondblue-workplace-roi-may14.pdf?utm_source=chatgpt.com" target="_blank" class="tooltip-icon">[source]</a></p>
+</div>
           </li>
         </ul>
       </div>
@@ -114,20 +74,3 @@
       <div id="conclusion-text"></div>
       <h3>How to Reduce Absenteeism Costs:</h3>
       <ul>
-<div class="benefit-item positive-impact"><li>Implement wellness programs</div>
-<div class="benefit-item positive-impact"><li>Improve workplace ergonomics</div>
-<div class="benefit-item positive-impact"><li>Offer flexible work arrangements</div>
-<div class="benefit-item positive-impact"><li>Create a positive workplace culture</div>
-<div class="benefit-item positive-impact"><li>Develop clear attendance policies</div>
-<div class="benefit-item positive-impact"><li>Train managers to address absenteeism</div>
-      </ul>
-      <p>Understanding the financial impact is the first step toward implementing effective solutions.</p>
-    </div>
-
-    <footer>
-      <p><small>Data sources linked above. Calculations are estimates based on average salaries and typical absenteeism rates.</small></p>
-    </footer>
-  </div>
-  <script src="script.js"></script>
-</body>
-</html>
