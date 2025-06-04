@@ -182,3 +182,9 @@ footer {
         grid-template-columns: repeat(3, 1fr);
     }
 }
+
+.benefit-item {
+    margin-bottom: 20px;
+    font-weight: 600;
+    font-size: 1rem;
+}
