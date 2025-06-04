@@ -1,1 +1,211 @@
-/* existing CSS content unchanged since the "unified-layout" class is already defined correctly */
+
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #fff;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header styles */
+.header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 30px;
+    border-bottom: 3px solid #0066CC;
+    padding-bottom: 20px;
+}
+
+.logo-section {
+    flex: 1;
+    max-width: 200px;
+}
+
+.logo {
+    width: 100%;
+    height: auto;
+}
+
+.title-section {
+    flex: 3;
+    padding-left: 20px;
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: #0066CC;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    color: #666;
+}
+
+/* Input and content styling */
+.input-section, .benefits-section, .conclusion-section {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+h2 {
+    color: #0066CC;
+    margin-bottom: 15px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    font-weight: 600;
+    display: block;
+    margin-bottom: 5px;
+}
+
+input.form-control, select.form-control {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 2px solid #0066CC;
+    border-radius: 5px;
+}
+
+.slider {
+    width: 100%;
+    margin-top: 5px;
+}
+
+/* Metrics section */
+.results-section {
+    margin-bottom: 30px;
+}
+
+.metrics-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.metric-card {
+    background-color: #f0f4f8;
+    border-left: 5px solid #0066CC;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.metric-value {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.main-metric {
+    background: linear-gradient(135deg, #E3F2FD 0%, #F8F9FA 100%);
+}
+
+.positive-impact {
+    color: #2E7D32;
+}
+
+/* Tooltip */
+.tooltip-icon {
+    font-size: 0.85rem;
+    color: #2E7D32;
+    margin-left: 6px;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .title-section {
+        padding-left: 0;
+        margin-top: 15px;
+    }
+
+    .metrics-grid {
+        grid-template-columns: 1fr;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    .metric-value {
+        font-size: 1.5rem;
+    }
+}
+
+.unified-layout {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.input-section, .benefits-section, .results-section, .conclusion-section {
+    flex: 1 1 48%;
+    min-width: 300px;
+}
+
+@media (min-width: 768px) {
+    .metrics-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.benefit-item {
+    margin-bottom: 20px;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.benefit-block {
+    margin-bottom: 30px;
+}
+.benefit-block p {
+    margin: 0;
+    line-height: 1.4;
+}
+
+.benefit-block {
+    margin-bottom: 28px;
+}
+.benefit-text {
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+.benefit-source {
+    font-size: 0.9rem;
+    color: #2E7D32;
+    margin: 0;
+}
