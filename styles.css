@@ -196,3 +196,16 @@ footer {
     margin: 0;
     line-height: 1.4;
 }
+
+.benefit-block {
+    margin-bottom: 28px;
+}
+.benefit-text {
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+.benefit-source {
+    font-size: 0.9rem;
+    color: #2E7D32;
+    margin: 0;
+}
