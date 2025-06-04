@@ -1,4 +1,3 @@
-
 /* Reset and base styles */
 * {
     margin: 0;
@@ -164,15 +163,20 @@ footer {
     .metric-value {
         font-size: 1.5rem;
     }
+
+    .unified-layout {
+        flex-direction: column;
+    }
 }
 
+/* Flex layout for side-by-side sections */
 .unified-layout {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
 }
 
-.input-section, .benefits-section, .results-section, .conclusion-section {
+.input-section, .benefits-section {
     flex: 1 1 48%;
     min-width: 300px;
 }
@@ -197,13 +201,11 @@ footer {
     line-height: 1.4;
 }
 
-.benefit-block {
-    margin-bottom: 28px;
-}
 .benefit-text {
     font-weight: 600;
     margin-bottom: 6px;
 }
+
 .benefit-source {
     font-size: 0.9rem;
     color: #2E7D32;
