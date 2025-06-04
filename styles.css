@@ -165,3 +165,14 @@ footer {
         font-size: 1.5rem;
     }
 }
+
+.unified-layout {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.input-section, .benefits-section, .results-section, .conclusion-section {
+    flex: 1 1 48%;
+    min-width: 300px;
+}
