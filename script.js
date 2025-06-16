@@ -45,10 +45,18 @@ function calculateAndUpdate() {
     const totalDaysLost = daysLostPerEmployee * employees * timeFactor;
     const dailyLoss = employees * salary * (absenteeismRate / 100) * (1 / 260);
 
+    const hoursPerDay = 8;
+    const totalHoursLost = totalDaysLost * hoursPerDay;
+    const hoursLostPerEmployee = employees > 0 ? totalHoursLost / employees : 0;
+    const avgDailyHoursLost = employees * (absenteeismRate / 100) * hoursPerDay;
+
     document.getElementById('main-loss').textContent = formatCurrency(financialLoss);
     document.getElementById('main-period').textContent = period;
     document.getElementById('days-lost').textContent = formatNumber(totalDaysLost, 1) + ' days';
     document.getElementById('daily-loss').textContent = formatCurrency(dailyLoss);
+    document.getElementById('hours-lost').textContent = formatNumber(totalHoursLost, 1) + ' h';
+    document.getElementById('hours-lost-per-employee').textContent = formatNumber(hoursLostPerEmployee, 1) + ' h';
+    document.getElementById('daily-hours-lost').textContent = formatNumber(avgDailyHoursLost, 1) + ' h';
 
     const reducedRate = absenteeismRate * 0.75;
     const reducedLoss = employees * salary * (reducedRate / 100) * timeFactor;
