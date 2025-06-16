@@ -33,9 +33,9 @@ function updateAbsenteeismDisplay() {
 }
 
 function calculateAndUpdate() {
-    const salary = parseInt(document.getElementById('salary').value);
-    const employees = parseInt(document.getElementById('employees').value);
-    const absenteeismRate = parseFloat(document.getElementById('absenteeism').value);
+    const salary = parseInt(document.getElementById('salary').value) || 0;
+    const employees = parseInt(document.getElementById('employees').value) || 0;
+    const absenteeismRate = parseFloat(document.getElementById('absenteeism').value) || 0;
     const period = document.getElementById('period').value;
 
     const timeFactor = timeFactors[period];
@@ -64,7 +64,7 @@ function calculateAndUpdate() {
 }
 
 function updateCustomROI() {
-    const investment = parseFloat(document.getElementById('custom-investment').value);
+    const investment = parseFloat(document.getElementById('custom-investment').value) || 0;
     const roiValue = investment * 2.3;
     document.getElementById('roi-potential-custom').textContent = formatCurrency(roiValue);
 }
